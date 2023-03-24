@@ -11,12 +11,15 @@
 package Controller;
 
 import Model.Property;
+import Model.Tenant;
 import View.AddPropertyMenuView;
+import View.CreateTenantView;
 import View.MainMenuView;
 import com.example.demo6.Main;
 import javafx.stage.Stage;
 
 import static com.example.demo6.Main.properties;
+import static com.example.demo6.Main.tenants;
 
 public class MainMenuController {
     private final MainMenuView view;
@@ -34,9 +37,17 @@ public class MainMenuController {
                 System.out.println(result);
                 AddPropertyMenuController addPropertyMenuController = new AddPropertyMenuController(new AddPropertyMenuView());
                 addPropertyMenuController.start(primaryStage);
+            } else if (result==2) {
+                CreateTenantController controller = new CreateTenantController(new CreateTenantView());
+                controller.createTenant(primaryStage);
             } else if (result == 4) {
                 for (Property property : properties) {
                     System.out.println(property);
+                }
+            }
+            else if (result == 5) {
+                for (Tenant tenant : tenants) {
+                    System.out.println(tenant);
                 }
             }
         });
