@@ -1,11 +1,21 @@
 package com.example.demo6;
 
 import Controller.MainMenuController;
+import Model.Lease;
+import Model.Property;
+import Model.Tenant;
 import View.MainMenuView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class HelloApplication extends Application {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main extends Application {
+    public static List<Property> properties = new ArrayList<>();
+    public static List<Tenant> tenants = new ArrayList<>();
+    public static List<Lease> leases = new ArrayList<>();
+
     @Override
     public void start(Stage stage) throws Exception {
         // Create an instance of your controller

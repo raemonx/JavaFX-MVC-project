@@ -12,6 +12,7 @@ package Controller;
 
 import View.AddPropertyMenuView;
 import View.MainMenuView;
+import com.example.demo6.Main;
 import javafx.stage.Stage;
 
 public class MainMenuController {
@@ -28,13 +29,14 @@ public class MainMenuController {
         int selection = -1;
 
         view.start(primaryStage, result -> {
-            // Do something with the result
-
-            if (result==1){
+            if (result == 1) {
                 System.out.println(result);
                 AddPropertyMenuController addPropertyMenuController = new AddPropertyMenuController(new AddPropertyMenuView());
                 addPropertyMenuController.start(primaryStage);
+            } else if (result == 4) {
+                System.out.println(Main.properties.get(0));
             }
+
         });
     }
 }
