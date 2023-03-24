@@ -10,10 +10,13 @@
  */
 package Controller;
 
+import Model.Property;
 import View.AddPropertyMenuView;
 import View.MainMenuView;
 import com.example.demo6.Main;
 import javafx.stage.Stage;
+
+import static com.example.demo6.Main.properties;
 
 public class MainMenuController {
     private final MainMenuView view;
@@ -34,7 +37,9 @@ public class MainMenuController {
                 AddPropertyMenuController addPropertyMenuController = new AddPropertyMenuController(new AddPropertyMenuView());
                 addPropertyMenuController.start(primaryStage);
             } else if (result == 4) {
-                System.out.println(Main.properties.get(0));
+                for (Property property : properties) {
+                    System.out.println(property);
+                }
             }
 
         });
