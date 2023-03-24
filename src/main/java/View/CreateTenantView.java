@@ -26,8 +26,6 @@ public class CreateTenantView {
         grid.setVgap(10);
 
         // Add the labels and text fields
-        Label streetNumberLabel = null;
-
         Label nameLabel = new Label("Name");
         TextField nameField = new TextField();
         Label emailLabel = new Label("Email");
@@ -63,14 +61,12 @@ public class CreateTenantView {
         primaryStage.show();
 
         submitBtn.setOnAction(e -> {
-
             String name = nameField.getText();
             String email = emailField.getText();
             String phone = phoneField.getText();
             CreateTenantController controller = new CreateTenantController(new CreateTenantView());
             controller.handleFormData(name, email, phone);
             MainMenuController mainMenuController = new MainMenuController(new MainMenuView());
-
             try {
                 mainMenuController.start(primaryStage);
             } catch (Exception ex) {

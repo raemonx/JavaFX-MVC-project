@@ -18,7 +18,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Create an instance of your controller
+        // Create an instance of controller
         MainMenuController controller = new MainMenuController(new MainMenuView());
 
         // Call the show() method of the controller to display the view

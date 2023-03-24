@@ -37,15 +37,14 @@ public class MainMenuController {
                 System.out.println(result);
                 AddPropertyMenuController addPropertyMenuController = new AddPropertyMenuController(new AddPropertyMenuView());
                 addPropertyMenuController.start(primaryStage);
-            } else if (result==2) {
+            } else if (result == 2) {
                 CreateTenantController controller = new CreateTenantController(new CreateTenantView());
                 controller.createTenant(primaryStage);
             } else if (result == 4) {
                 for (Property property : properties) {
                     System.out.println(property);
                 }
-            }
-            else if (result == 5) {
+            } else if (result == 5) {
                 for (Tenant tenant : tenants) {
                     System.out.println(tenant);
                 }

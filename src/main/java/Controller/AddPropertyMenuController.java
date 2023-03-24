@@ -38,7 +38,6 @@ public class AddPropertyMenuController {
                 MainMenuController controller = new MainMenuController(new MainMenuView());
                 controller.start(primaryStage);
             }
-
         });
     }
 }
