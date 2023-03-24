@@ -21,8 +21,6 @@ import static com.example.demo6.Main.properties;
 public class MainMenuController {
     private final MainMenuView view;
 
-//    Main main = new Main();
-
     public MainMenuController(MainMenuView view) {
         this.view = view;
     }
@@ -41,7 +39,6 @@ public class MainMenuController {
                     System.out.println(property);
                 }
             }
-
         });
     }
 }

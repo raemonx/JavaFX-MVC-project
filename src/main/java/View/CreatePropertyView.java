@@ -2,11 +2,18 @@ package View;
 
 import Controller.CreatePropertyController;
 import Controller.MainMenuController;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CreatePropertyView {
@@ -76,9 +83,22 @@ public class CreatePropertyView {
         grid.add(sqftField, 1, 8);
         grid.add(submitBtn, 1, 9);
 
-        Scene scene = new Scene(grid, 400, 300);
+        BorderPane bp = new BorderPane();
+        bp.setPadding(new Insets(10, 30, 30, 30));
+
+        Text title = new Text();
+        title.setText("Add Property Details");
+        title.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
+        title.setFill(Color.web("#0076a3"));
+
+        VBox vbox = new VBox(title, grid, submitBtn);
+        vbox.setSpacing(20);
+        vbox.setPrefWidth(400);
+        bp.setCenter(vbox);
+
+        Scene scene = new Scene(bp, 500, 500);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Add Property Details");
+        primaryStage.setTitle("Property Management System");
         primaryStage.show();
 
         var ref = new Object() {
