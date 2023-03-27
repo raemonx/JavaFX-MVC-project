@@ -130,6 +130,5 @@ public class Condo implements Property {
                 tenant.update(this);
             }
         }
-
     }
 }

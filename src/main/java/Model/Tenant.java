@@ -14,6 +14,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 //Tenant class containing the tenant info and the leases held by the tenant
 public class Tenant implements TenantObserver, TenantInterface {
     private String name;
@@ -89,11 +90,10 @@ public class Tenant implements TenantObserver, TenantInterface {
     @Override
     public String toString() {
         String leases = getLeases();
-        return "Tenant Details: "+"\n" +
-                "name ='" + name + '\'' +
-                ", email ='" + email + '\'' +
-                ", phone ='" + phone + '\'' +
-                leases ;
+        return "Name ='" + name + '\'' +
+                ", Email ='" + email + '\'' +
+                ", Phone ='" + phone + '\'' +
+                leases;
     }
 
     @Override

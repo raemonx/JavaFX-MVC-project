@@ -10,11 +10,8 @@
  */
 package Controller;
 
-import Model.Property;
 import Model.Tenant;
-import View.AddPropertyMenuView;
-import View.CreateTenantView;
-import View.MainMenuView;
+import View.*;
 import com.example.demo6.Main;
 import javafx.stage.Stage;
 
@@ -23,13 +20,13 @@ import static com.example.demo6.Main.tenants;
 
 public class MainMenuController {
     private final MainMenuView view;
+    Main main = new Main();
 
     public MainMenuController(MainMenuView view) {
         this.view = view;
     }
 
     public void start(Stage primaryStage) throws Exception {
-        System.out.println("-------- Welcome to Rental Management System --------");
         int selection = -1;
 
         view.start(primaryStage, result -> {
@@ -41,13 +38,11 @@ public class MainMenuController {
                 CreateTenantController controller = new CreateTenantController(new CreateTenantView());
                 controller.createTenant(primaryStage);
             } else if (result == 4) {
-                for (Property property : properties) {
-                    System.out.println(property);
-                }
+                PropertyListController propertyListController = new PropertyListController(main, new PropertyListView(properties));
+                propertyListController.displayProperties(primaryStage);
             } else if (result == 5) {
-                for (Tenant tenant : tenants) {
-                    System.out.println(tenant);
-                }
+                TenantListController tenantListController = new TenantListController(main, new TenantListView(tenants));
+                tenantListController.displayTenants(primaryStage);
             }
         });
     }
