@@ -10,7 +10,6 @@
  */
 package Controller;
 
-import Model.Tenant;
 import View.*;
 import com.example.demo6.Main;
 import javafx.stage.Stage;
@@ -26,8 +25,6 @@ public class MainMenuController {
     }
 
     public void start(Stage primaryStage) throws Exception {
-        int selection = -1;
-
         view.start(primaryStage, result -> {
             if (result == 1) {
                 AddPropertyMenuController addPropertyMenuController = new AddPropertyMenuController(new AddPropertyMenuView());
@@ -56,6 +53,21 @@ public class MainMenuController {
             } else if (result == 8) {
                 DisplayLeaseController leaseController = new DisplayLeaseController(main, new DisplayLeaseView(leases));
                 leaseController.displayLeases(primaryStage);
+            } else if (result == 9) {
+                //end lease manually as admin. or end lease when lease date expires
+                RefreshLeaseController refreshLeaseController = new RefreshLeaseController(new ResfreshLeaseView());
+                refreshLeaseController.refreshLease(primaryStage);
+            } else if (result == 10) {
+                DisplayRentLeaseController displayRentLeaseController = new DisplayRentLeaseController(main, new DisplayRentLeaseView(leases));
+                displayRentLeaseController.displayLeases(primaryStage);
+            } else if (result == 11) {
+                // handle "Display unpaid leases" menu option
+                RentPaidOrUnpaidController rentPaidOrUnpaidController = new RentPaidOrUnpaidController(new RentPaidOrUnpaidView(leases));
+                rentPaidOrUnpaidController.displayPaidOrUnpaidLease(primaryStage, Main.leases, false);
+            } else if (result == 12) {
+                // handle "Display paid leases" menu option
+                RentPaidOrUnpaidController rentPaidOrUnpaidController = new RentPaidOrUnpaidController(new RentPaidOrUnpaidView(leases));
+                rentPaidOrUnpaidController.displayPaidOrUnpaidLease(primaryStage, Main.leases, true);
             }
         });
     }

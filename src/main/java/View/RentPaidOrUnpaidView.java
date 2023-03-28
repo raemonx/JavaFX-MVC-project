@@ -22,19 +22,25 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class DisplayLeaseView {
+public class RentPaidOrUnpaidView {
     private ObservableList<Lease> leases;
 
-    public DisplayLeaseView(List<Lease> leases) {
+    public RentPaidOrUnpaidView(List<Lease> leases) {
         this.leases = FXCollections.observableArrayList(leases);
     }
 
-    public void displayLeases(Stage primaryStage, List<Lease> leases1) {
-        this.leases = FXCollections.observableArrayList(leases1);
+    public void displayLeases(Stage primaryStage, List<Lease> leases1, boolean rentPaid) {
+        this.leases = FXCollections.observableArrayList();
+
+        for (Lease lease : leases1) {
+            if (lease.isRentPaid() == rentPaid) {
+                this.leases.add(lease);
+            }
+        }
 
         ListView<String> listView = new ListView<>();
-        for (int i = 0; i < leases.size(); i++) {
-            String leaseText = "Lease " + (i + 1) + ": \n" + leases.get(i).toString();
+        for (int i = 0; i < this.leases.size(); i++) {
+            String leaseText = "Lease " + (i + 1) + ": \n" + this.leases.get(i).toString();
             listView.getItems().add(leaseText);
         }
 
@@ -58,7 +64,7 @@ public class DisplayLeaseView {
         vbox.setMaxWidth(Double.MAX_VALUE);
         vbox.getChildren().addAll(new Text(""), listView, hbox);
 
-        Text title = new Text("Lease List");
+        Text title = new Text(rentPaid ? "Leases with Rent Paid" : "Leases with Rent Unpaid");
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
         title.setFill(Color.web("#0076a3"));
 
@@ -73,4 +79,5 @@ public class DisplayLeaseView {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 }

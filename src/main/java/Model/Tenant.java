@@ -12,6 +12,8 @@ package Model;
 
 //import View.SendMailView;
 
+import View.SendMailView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,7 +99,7 @@ public class Tenant implements TenantObserver, TenantInterface {
 
     @Override
     public void update(Property property) {
-//        SendMailView sendMailView = new SendMailView();
-//        sendMailView.display(this.getEmail(), property.getAddress());
+        SendMailView sendMailView = new SendMailView();
+        sendMailView.display(this.getEmail(), property.getAddress());
     }
 }
