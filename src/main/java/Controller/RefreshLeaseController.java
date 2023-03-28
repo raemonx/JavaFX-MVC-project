@@ -30,7 +30,7 @@ public class RefreshLeaseController {
     }
 
     public void refresh(Date date) {
-        RefreshLease refresh= new RefreshLease();
-        refresh.refresh(Main.leases,date);
+        RefreshLease refresh = new RefreshLease();
+        refresh.refresh(Main.leases, date);
     }
 }

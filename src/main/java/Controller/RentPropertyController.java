@@ -29,8 +29,6 @@ public class RentPropertyController {
     }
 
     public void start(Stage primaryStage) {
-        int propertySelection = -1;
-        int tenantSelection = -1;
         //Rent available property
         view.start(primaryStage, Main.tenants);
     }

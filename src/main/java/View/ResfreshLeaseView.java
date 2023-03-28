@@ -12,8 +12,6 @@ package View;
 
 import Controller.MainMenuController;
 import Controller.RefreshLeaseController;
-import Controller.RentPropertyController;
-import com.example.demo6.Main;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,7 +26,6 @@ import javafx.stage.Stage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
 public class ResfreshLeaseView {
 

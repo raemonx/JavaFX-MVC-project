@@ -1,6 +1,5 @@
 package View;
 
-import Controller.CreatePropertyController;
 import Controller.CreateTenantController;
 import Controller.MainMenuController;
 import javafx.geometry.Insets;

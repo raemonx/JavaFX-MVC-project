@@ -11,9 +11,7 @@
 package Controller;
 
 import Model.Lease;
-import Model.Tenant;
 import View.DisplayLeaseView;
-import View.TenantListView;
 import com.example.demo6.Main;
 import javafx.stage.Stage;
 

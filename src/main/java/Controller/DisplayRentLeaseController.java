@@ -29,26 +29,20 @@ public class DisplayRentLeaseController {
     }
 
     public void displayLeases(Stage primaryStage) {
-        int leaseSelection =-1;
+        int leaseSelection = -1;
         List<Lease> leases = Main.leases;
         displayLeaseView.displayLeases(primaryStage, leases);
-//        if(leases.size()!= 0){
-//            leaseSelection = displayLeaseView.getSelection(Main.tenants.size());
-//            boolean value = displayLeaseView.getBooleanValue();
-//             Main.leases.get(leaseSelection-1).setRentPaid(value);
-//        }
     }
 
     public void modify(int leaseSelection, String selectedOption) {
-        if(leases.size()!= 0){
+        if (leases.size() != 0) {
             boolean value;
-            if(selectedOption.equals("Paid")) {
+            if (selectedOption.equals("Paid")) {
                 value = true;
-            }
-            else {
+            } else {
                 value = false;
             }
-             leases.get(leaseSelection -1).setRentPaid(value);
+            leases.get(leaseSelection - 1).setRentPaid(value);
         }
     }
 

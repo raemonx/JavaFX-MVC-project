@@ -59,11 +59,11 @@ public class DisplayRentLeaseView {
         submitButton.setOnAction(event -> {
             String value = textField.getText();
             RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-            if (selectedRadioButton != null && value!=null) {
+            if (selectedRadioButton != null && value != null) {
                 String selectedOption = selectedRadioButton.getText();
                 // Do something with the value and selected option
                 System.out.println("Value: " + value + ", Selected option: " + selectedOption);
-                DisplayRentLeaseController displayRentLeaseController = new DisplayRentLeaseController(new Main(),new DisplayRentLeaseView(leases1));
+                DisplayRentLeaseController displayRentLeaseController = new DisplayRentLeaseController(new Main(), new DisplayRentLeaseView(leases1));
                 displayRentLeaseController.modify(Integer.parseInt(value), selectedOption);
             }
             MainMenuController mainMenuController = new MainMenuController(new MainMenuView());
