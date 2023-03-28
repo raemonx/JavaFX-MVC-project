@@ -101,7 +101,6 @@ public class RentPropertyView {
                 if (!(number > Main.tenants.size())) {
                     RentPropertyView2 rentPropertyView2 = new RentPropertyView2(properties);
                     rentPropertyView2.start(primaryStage, properties, number);
-                    System.out.println("Number entered: " + number);
                 }
 
             } catch (NumberFormatException ex) {

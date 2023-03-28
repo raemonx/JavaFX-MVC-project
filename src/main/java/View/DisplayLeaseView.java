@@ -2,7 +2,6 @@ package View;
 
 import Controller.MainMenuController;
 import Model.Lease;
-import Model.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -32,7 +31,12 @@ public class DisplayLeaseView {
 
     public void displayLeases(Stage primaryStage, List<Lease> leases1) {
         this.leases = FXCollections.observableArrayList(leases1);
-        ListView<Lease> listView = new ListView<>(leases);
+
+        ListView<String> listView = new ListView<>();
+        for (int i = 0; i < leases.size(); i++) {
+            String leaseText = "Lease " + (i + 1) + ". \n" + leases.get(i).toString();
+            listView.getItems().add(leaseText);
+        }
 
         Button button = new Button("Go Back to Main Menu");
         button.setOnAction(event -> {

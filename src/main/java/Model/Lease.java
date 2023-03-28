@@ -79,6 +79,6 @@ public class Lease {
 
     @Override
     public String toString() {
-        return "Lease -->"+tenant  + property ;
+        return tenant + "" + property ;
     }
 }

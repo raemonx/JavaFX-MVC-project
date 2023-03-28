@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -33,6 +34,20 @@ public class PropertiesAvailableOrUnavailableView {
                 .filter(p -> p.isAvailable() == available)
                 .collect(Collectors.toList());
         ListView<Property> listView = new ListView<>(FXCollections.observableArrayList(filteredProperties));
+
+        // Set the cell factory to include the index of the property in the list
+        listView.setCellFactory(param -> new ListCell<Property>() {
+            @Override
+            protected void updateItem(Property item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    int index = getIndex() + 1;
+                    setText(index + ". " + item.toString());
+                }
+            }
+        });
 
         Button button = new Button("Go Back to Main Menu");
         button.setOnAction(event -> {
@@ -70,4 +85,5 @@ public class PropertiesAvailableOrUnavailableView {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 }

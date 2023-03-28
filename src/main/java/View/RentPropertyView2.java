@@ -62,8 +62,6 @@ public class RentPropertyView2 {
 
                 RentPropertyController rentPropertyController = new RentPropertyController(new Main(), new RentPropertyView(tenants));
                 rentPropertyController.rent(primaryStage, tenantSelection, propertySelection);
-
-                System.out.println("Number entered: " + propertySelection);
             } catch (NumberFormatException ex) {
                 // handle invalid input
                 System.err.println("Invalid number: " + inputBox.getText());

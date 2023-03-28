@@ -30,7 +30,6 @@ public class MainMenuController {
 
         view.start(primaryStage, result -> {
             if (result == 1) {
-                System.out.println(result);
                 AddPropertyMenuController addPropertyMenuController = new AddPropertyMenuController(new AddPropertyMenuView());
                 addPropertyMenuController.start(primaryStage);
             } else if (result == 2) {
