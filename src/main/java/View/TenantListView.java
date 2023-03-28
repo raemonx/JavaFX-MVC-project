@@ -74,7 +74,6 @@ public class TenantListView {
                     Label leasesText = new Label(leases);
                     leasesText.setFont(Font.font("Verdana", 14));
                     vbox.getChildren().add(leasesText);
-
                     setGraphic(vbox);
                 }
             }
