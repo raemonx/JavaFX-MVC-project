@@ -1,13 +1,13 @@
 package View;
 
 import Controller.MainMenuController;
+import Model.Lease;
 import Model.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -23,19 +23,16 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class PropertyListView {
-    private ObservableList<Property> properties;
+public class DisplayLeaseView {
+    private ObservableList<Lease> leases;
 
-    public PropertyListView(List<Property> properties) {
-        this.properties = FXCollections.observableArrayList(properties);
+    public DisplayLeaseView(List<Lease> leases) {
+        this.leases = FXCollections.observableArrayList(leases);
     }
 
-    public void start(Stage primaryStage, List<Property> properties1) {
-        this.properties = FXCollections.observableArrayList(properties1);
-        ListView<Property> listView = new ListView<>(properties);
-
-        // Add numbering to the properties in the list
-        listView.setCellFactory(param -> new ListViewCell());
+    public void displayLeases(Stage primaryStage, List<Lease> leases1) {
+        this.leases = FXCollections.observableArrayList(leases1);
+        ListView<Lease> listView = new ListView<>(leases);
 
         Button button = new Button("Go Back to Main Menu");
         button.setOnAction(event -> {
@@ -57,7 +54,7 @@ public class PropertyListView {
         vbox.setMaxWidth(Double.MAX_VALUE);
         vbox.getChildren().addAll(new Text(""), listView, hbox);
 
-        Text title = new Text("Property List");
+        Text title = new Text("Lease List");
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
         title.setFill(Color.web("#0076a3"));
 
@@ -71,21 +68,5 @@ public class PropertyListView {
 
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    // Define a ListViewCell class to display properties with numbering
-    private class ListViewCell extends javafx.scene.control.ListCell<Property> {
-        @Override
-        protected void updateItem(Property item, boolean empty) {
-            super.updateItem(item, empty);
-
-            if (empty || item == null) {
-                setText(null);
-            } else {
-                int index = getIndex() + 1;
-                Label label = new Label(index + ". " + item.toString());
-                setGraphic(label);
-            }
-        }
     }
 }

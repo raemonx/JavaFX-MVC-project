@@ -72,8 +72,7 @@ public class Tenant implements TenantObserver, TenantInterface {
     public String getLeases() {
         StringBuilder sb = new StringBuilder();
         for (Lease lease : leases) {
-            sb.append("\nLease:\n")
-                    .append("Start date: ").append(lease.getStartDate()).append("\n")
+            sb.append("Start date: ").append(lease.getStartDate()).append("\n")
                     .append("End date: ").append(lease.getEndDate()).append("\n")
                     .append("Property address: ").append(lease.getProperty().getAddress()).append("\n")
                     .append("Rent amount: ").append(lease.getRentAmount()).append("\n")

@@ -30,6 +30,6 @@ public class TenantListController {
 
     public void displayTenants(Stage primaryStage) {
         List<Tenant> tenants = Main.tenants;
-        tenantListView.start(primaryStage,tenants);
+        tenantListView.start(primaryStage, tenants);
     }
 }

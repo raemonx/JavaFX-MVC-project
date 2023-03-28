@@ -15,8 +15,7 @@ import View.*;
 import com.example.demo6.Main;
 import javafx.stage.Stage;
 
-import static com.example.demo6.Main.properties;
-import static com.example.demo6.Main.tenants;
+import static com.example.demo6.Main.*;
 
 public class MainMenuController {
     private final MainMenuView view;
@@ -37,12 +36,27 @@ public class MainMenuController {
             } else if (result == 2) {
                 CreateTenantController controller = new CreateTenantController(new CreateTenantView());
                 controller.createTenant(primaryStage);
+            } else if (result == 3) {
+                // handle "Rent a unit" menu option
+                RentPropertyController rentPropertyController = new RentPropertyController(main, new RentPropertyView(tenants));
+                rentPropertyController.start(primaryStage);
             } else if (result == 4) {
                 PropertyListController propertyListController = new PropertyListController(main, new PropertyListView(properties));
                 propertyListController.displayProperties(primaryStage);
             } else if (result == 5) {
                 TenantListController tenantListController = new TenantListController(main, new TenantListView(tenants));
                 tenantListController.displayTenants(primaryStage);
+            } else if (result == 6) {
+                // handle "Display rented units" menu option
+                PropertiesAvailableOrUnavailableController propertiesAvailableOrUnavailableController = new PropertiesAvailableOrUnavailableController(new PropertiesAvailableOrUnavailableView(properties));
+                propertiesAvailableOrUnavailableController.displayProperties(primaryStage, Main.properties, false);
+            } else if (result == 7) {
+                // handle "Display vacant units" menu option
+                PropertiesAvailableOrUnavailableController propertiesAvailableOrUnavailableController = new PropertiesAvailableOrUnavailableController(new PropertiesAvailableOrUnavailableView(properties));
+                propertiesAvailableOrUnavailableController.displayProperties(primaryStage, Main.properties, true);
+            } else if (result == 8) {
+                DisplayLeaseController leaseController = new DisplayLeaseController(main, new DisplayLeaseView(leases));
+                leaseController.displayLeases(primaryStage);
             }
         });
     }

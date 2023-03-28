@@ -46,7 +46,7 @@ public class TenantListView {
 
                     // add tenant number
                     int index = getIndex() + 1;
-                    Label numberLabel = new Label("Tenant "+index + ".");
+                    Label numberLabel = new Label("Tenant " + index + ".");
                     numberLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
                     vbox.getChildren().add(numberLabel);
 
@@ -66,7 +66,7 @@ public class TenantListView {
                     vbox.getChildren().add(phoneLabel);
 
                     // add tenant leases
-                    Label leasesLabel = new Label("Leases: ");
+                    Label leasesLabel = new Label("Lease: ");
                     leasesLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
                     vbox.getChildren().add(leasesLabel);
 

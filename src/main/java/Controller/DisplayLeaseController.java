@@ -10,24 +10,26 @@
  */
 package Controller;
 
-import Model.Property;
-import View.PropertyListView;
+import Model.Lease;
+import Model.Tenant;
+import View.DisplayLeaseView;
+import View.TenantListView;
 import com.example.demo6.Main;
 import javafx.stage.Stage;
 
 import java.util.List;
 
-public class PropertyListController {
+public class DisplayLeaseController {
     private final Main propertyManager;
-    private final PropertyListView propertyListView;
+    private final DisplayLeaseView displayLeaseView;
 
-    public PropertyListController(Main propertyManager, PropertyListView propertyListView) {
+    public DisplayLeaseController(Main propertyManager, DisplayLeaseView displayLeaseView) {
         this.propertyManager = propertyManager;
-        this.propertyListView = propertyListView;
+        this.displayLeaseView = displayLeaseView;
     }
 
-    public void displayProperties(Stage primaryStage) {
-        List<Property> properties = Main.properties;
-        propertyListView.start(primaryStage, properties);
+    public void displayLeases(Stage primaryStage) {
+        List<Lease> leases = Main.leases;
+        displayLeaseView.displayLeases(primaryStage, leases);
     }
 }

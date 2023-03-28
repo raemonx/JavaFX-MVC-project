@@ -1,7 +1,9 @@
 package View;
 
 import Controller.MainMenuController;
+import Controller.RentPropertyController;
 import Model.Property;
+import com.example.demo6.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -9,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -23,19 +26,23 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class PropertyListView {
+import static com.example.demo6.Main.*;
+
+public class RentPropertyView2 {
     private ObservableList<Property> properties;
 
-    public PropertyListView(List<Property> properties) {
+    public RentPropertyView2(List<Property> properties) {
         this.properties = FXCollections.observableArrayList(properties);
     }
 
-    public void start(Stage primaryStage, List<Property> properties1) {
+    public void start(Stage primaryStage, List<Property> properties1, int tenantSelection) {
         this.properties = FXCollections.observableArrayList(properties1);
         ListView<Property> listView = new ListView<>(properties);
 
         // Add numbering to the properties in the list
         listView.setCellFactory(param -> new ListViewCell());
+        TextField inputBox = new TextField();
+        inputBox.setPromptText("Choose your option");
 
         Button button = new Button("Go Back to Main Menu");
         button.setOnAction(event -> {
@@ -47,7 +54,23 @@ public class PropertyListView {
             }
         });
 
-        HBox hbox = new HBox(button);
+        Button nextButton = new Button("Rent");
+        nextButton.setOnAction(event -> {
+            try {
+                int propertySelection = Integer.parseInt(inputBox.getText());
+                // do something with the number
+
+                RentPropertyController rentPropertyController = new RentPropertyController(new Main(), new RentPropertyView(tenants));
+                rentPropertyController.rent(primaryStage, tenantSelection, propertySelection);
+
+                System.out.println("Number entered: " + propertySelection);
+            } catch (NumberFormatException ex) {
+                // handle invalid input
+                System.err.println("Invalid number: " + inputBox.getText());
+            }
+        });
+
+        HBox hbox = new HBox(inputBox, nextButton, button);
         hbox.setPadding(new Insets(10, 0, 0, 0));
 
         VBox vbox = new VBox();
