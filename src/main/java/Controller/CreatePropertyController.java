@@ -10,12 +10,7 @@
  */
 package Controller;
 
-import Model.Address;
-import Model.ApartmentCreator;
-import Model.CondoCreator;
-import Model.HouseCreator;
-import Model.Property;
-import Model.PropertyCreator;
+import Model.*;
 import View.CreatePropertyView;
 import com.example.demo6.Main;
 import javafx.stage.Stage;

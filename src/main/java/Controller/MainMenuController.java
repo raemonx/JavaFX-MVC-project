@@ -10,23 +10,11 @@
  */
 package Controller;
 
-import View.AddPropertyMenuView;
-import View.CreateTenantView;
-import View.DisplayLeaseView;
-import View.DisplayRentLeaseView;
-import View.MainMenuView;
-import View.PropertiesAvailableOrUnavailableView;
-import View.PropertyListView;
-import View.RentPaidOrUnpaidView;
-import View.RentPropertyView;
-import View.ResfreshLeaseView;
-import View.TenantListView;
+import View.*;
 import com.example.demo6.Main;
 import javafx.stage.Stage;
 
-import static com.example.demo6.Main.leases;
-import static com.example.demo6.Main.properties;
-import static com.example.demo6.Main.tenants;
+import static com.example.demo6.Main.*;
 
 public class MainMenuController {
     private final MainMenuView view;

@@ -10,9 +10,7 @@
  */
 package Controller;
 
-import Model.Property;
 import Model.Tenant;
-import View.PropertyListView;
 import View.TenantListView;
 import com.example.demo6.Main;
 import javafx.stage.Stage;
