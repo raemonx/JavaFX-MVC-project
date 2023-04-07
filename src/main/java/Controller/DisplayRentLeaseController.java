@@ -35,15 +35,19 @@ public class DisplayRentLeaseController {
     }
 
     public void modify(int leaseSelection, String selectedOption) {
-        if (leases.size() != 0) {
-            boolean value;
-            if (selectedOption.equals("Paid")) {
-                value = true;
-            } else {
-                value = false;
+        Runnable task = () -> {
+            if (leases.size() != 0) {
+                boolean value;
+                if (selectedOption.equals("Paid")) {
+                    value = true;
+                } else {
+                    value = false;
+                }
+                leases.get(leaseSelection - 1).setRentPaid(value);
             }
-            leases.get(leaseSelection - 1).setRentPaid(value);
-        }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
     }
 
 }

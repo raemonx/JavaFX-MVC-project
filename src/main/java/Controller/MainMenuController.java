@@ -12,6 +12,7 @@ package Controller;
 
 import View.*;
 import com.example.demo6.Main;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import static com.example.demo6.Main.*;
@@ -68,6 +69,8 @@ public class MainMenuController {
                 // handle "Display paid leases" menu option
                 RentPaidOrUnpaidController rentPaidOrUnpaidController = new RentPaidOrUnpaidController(new RentPaidOrUnpaidView(leases));
                 rentPaidOrUnpaidController.displayPaidOrUnpaidLease(primaryStage, Main.leases, true);
+            } else if (result == 13) {
+                Platform.exit();
             }
         });
     }

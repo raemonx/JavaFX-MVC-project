@@ -13,8 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetClass<S extends Identifiable> {
+    //arraylist to store the elements of the Set class
     private List<S> elements = new ArrayList<>();
 
+    // method to add a new element
     public void add(S newElement) {
         boolean flag = false;
         if (elements.isEmpty()) {
@@ -30,6 +32,7 @@ public class SetClass<S extends Identifiable> {
             elements.add(newElement);
         }
     }
+    //method to remove an element
     public S remove(int id) {
         for (int i = 0; i < elements.size(); i++) {
             if (elements.get(i).getID() == id) {
@@ -39,7 +42,7 @@ public class SetClass<S extends Identifiable> {
         }
         return null;
     }
-
+    //method to peek an element and return a boolean value
     public boolean peek(int id) {
         for (S element : elements) {
             if (element.getID() == id) {
@@ -48,10 +51,11 @@ public class SetClass<S extends Identifiable> {
         }
         return false;
     }
+    //Method to return the size of the set
     public int size() {
         return elements.size();
     }
-
+    //Method to check if elements are a part of a set
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof SetClass) {
@@ -69,7 +73,7 @@ public class SetClass<S extends Identifiable> {
         }
         return false;
     }
-
+    //Method to display the elements of the set
     public void display() {
         for (S element : elements) {
             System.out.println(element);

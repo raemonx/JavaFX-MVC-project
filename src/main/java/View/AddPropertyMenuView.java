@@ -49,7 +49,8 @@ public class AddPropertyMenuView {
         });
 
         BorderPane bp = new BorderPane();
-        bp.setPadding(new Insets(10, 30, 30, 30));
+        bp.setPadding(new Insets(30, 50, 50, 50));
+        bp.setStyle("-fx-background-color: #F0F8FF;");
 
         VBox vbox = new VBox(title, text, inputField, submitButton);
         vbox.setSpacing(20);

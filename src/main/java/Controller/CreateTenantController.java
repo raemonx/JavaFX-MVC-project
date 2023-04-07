@@ -29,13 +29,17 @@ public class CreateTenantController {
     }
 
     public void handleFormData(String name, String email, String phone) {
-        TenantInterface tenantPrototype = new Tenant("Name", "name@email.com", "0000000000");
+        Runnable task = () -> {
+            TenantInterface tenantPrototype = new Tenant("Name", "name@email.com", "0000000000");
 
-        //clone the prototype and set the parameters
-        Tenant tenant = tenantPrototype.clone();
-        tenant.setName(name);
-        tenant.setEmail(email);
-        tenant.setPhone(phone);
-        Main.tenants.add(tenant);
+            //clone the prototype and set the parameters
+            Tenant tenant = tenantPrototype.clone();
+            tenant.setName(name);
+            tenant.setEmail(email);
+            tenant.setPhone(phone);
+            Main.tenants.add(tenant);
+        };
+        Thread thread = new Thread(task);
+        thread.start();
     }
 }

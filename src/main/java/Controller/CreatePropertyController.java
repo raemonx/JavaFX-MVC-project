@@ -28,23 +28,29 @@ public class CreatePropertyController {
     }
 
     public void handleFormData(int type, String streetNumber, String streetName, String city, String state, String zipCode, int unitNumber, int numberOfBedrooms, int numberOfBathrooms, int squareFootage) {
-        String streetNo = "";
-        if (streetNumber != null) {
-            streetNo = streetNumber;
-        }
+
         Address address = new Address(streetName, city, state, zipCode);
-        if (type == 1) {
-            PropertyCreator creator = new ApartmentCreator();
-            Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
-            Main.properties.add(property);
-        } else if (type == 2) {
-            PropertyCreator creator = new CondoCreator();
-            Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
-            Main.properties.add(property);
-        } else if (type == 3) {
-            PropertyCreator creator = new HouseCreator();
-            Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
-            Main.properties.add(property);
-        }
+        // Handle the creators on a new thread
+        Runnable task = () -> {
+            String streetNo = "";
+            if (streetNumber != null) {
+                streetNo = streetNumber;
+            }
+            if (type == 1) {
+                PropertyCreator creator = new ApartmentCreator();
+                Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
+                Main.properties.add(property);
+            } else if (type == 2) {
+                PropertyCreator creator = new CondoCreator();
+                Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
+                Main.properties.add(property);
+            } else if (type == 3) {
+                PropertyCreator creator = new HouseCreator();
+                Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
+                Main.properties.add(property);
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
     }
 }
