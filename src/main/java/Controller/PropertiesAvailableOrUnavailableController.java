@@ -12,6 +12,7 @@ package Controller;
 
 import Model.Property;
 import View.PropertiesAvailableOrUnavailableView;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -24,6 +25,12 @@ public class PropertiesAvailableOrUnavailableController {
     }
 
     public void displayProperties(Stage primaryStage, List<Property> properties, boolean availableOnly) {
-        view.displayProperties(primaryStage, properties, availableOnly);
+
+        Thread thread = new Thread(() -> {
+            Platform.runLater(() -> {
+                view.displayProperties(primaryStage, properties, availableOnly);
+            });
+        });
+        thread.start();
     }
 }

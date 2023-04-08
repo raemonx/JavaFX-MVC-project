@@ -14,6 +14,7 @@ import Model.Tenant;
 import Model.TenantInterface;
 import View.CreateTenantView;
 import com.example.demo6.Main;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class CreateTenantController {
@@ -29,7 +30,9 @@ public class CreateTenantController {
     }
 
     public void handleFormData(String name, String email, String phone) {
-        Runnable task = () -> {
+        Thread thread = new Thread(() -> {
+
+            Platform.runLater(() -> {
             TenantInterface tenantPrototype = new Tenant("Name", "name@email.com", "0000000000");
 
             //clone the prototype and set the parameters
@@ -38,8 +41,15 @@ public class CreateTenantController {
             tenant.setEmail(email);
             tenant.setPhone(phone);
             Main.tenants.add(tenant);
-        };
-        Thread thread = new Thread(task);
+
+            });
+
+            try {
+                Thread.sleep(20000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
         thread.start();
     }
 }

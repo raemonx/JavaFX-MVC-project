@@ -13,6 +13,7 @@ package Controller;
 import Model.Tenant;
 import View.TenantListView;
 import com.example.demo6.Main;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -27,7 +28,12 @@ public class TenantListController {
     }
 
     public void displayTenants(Stage primaryStage) {
-        List<Tenant> tenants = Main.tenants;
-        tenantListView.start(primaryStage, tenants);
+        Thread thread = new Thread(() -> {
+            Platform.runLater(() -> {
+                List<Tenant> tenants = Main.tenants;
+                tenantListView.start(primaryStage, tenants);
+            });
+        });
+        thread.start();
     }
 }

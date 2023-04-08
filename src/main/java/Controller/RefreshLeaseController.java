@@ -13,6 +13,7 @@ package Controller;
 import Model.RefreshLease;
 import View.ResfreshLeaseView;
 import com.example.demo6.Main;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import java.util.Date;
@@ -30,7 +31,12 @@ public class RefreshLeaseController {
     }
 
     public void refresh(Date date) {
-        RefreshLease refresh = new RefreshLease();
-        refresh.refresh(Main.leases, date);
+        Thread thread = new Thread(() -> {
+            Platform.runLater(() -> {
+                RefreshLease refresh = new RefreshLease();
+                refresh.refresh(Main.leases, date);
+            });
+        });
+        thread.start();
     }
 }

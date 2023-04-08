@@ -37,6 +37,7 @@ public class RentPropertyController {
 
     public void rent(Stage primaryStage, int tenantSelection, int propertySelection) {
 
+
         if (!(propertySelection > Main.properties.size())) {
             if (Main.properties.get(propertySelection - 1).isAvailable()) {
                 view.getLeaseDetails(primaryStage, tenantSelection, propertySelection);

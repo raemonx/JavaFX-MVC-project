@@ -13,6 +13,7 @@ package Controller;
 import Model.Lease;
 import View.DisplayLeaseView;
 import com.example.demo6.Main;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -25,14 +26,18 @@ public class DisplayLeaseController {
     private final DisplayLeaseView displayLeaseView;
 
 
-
     public DisplayLeaseController(Main propertyManager, DisplayLeaseView displayLeaseView) {
         this.propertyManager = propertyManager;
         this.displayLeaseView = displayLeaseView;
     }
 
     public void displayLeases(Stage primaryStage) {
-        List<Lease> leases = Main.leases;
-        displayLeaseView.displayLeases(primaryStage, leases);
+        Thread thread = new Thread(() -> {
+            Platform.runLater(() -> {
+                List<Lease> leases = Main.leases;
+                displayLeaseView.displayLeases(primaryStage, leases);
+            });
+        });
+        thread.start();
     }
 }

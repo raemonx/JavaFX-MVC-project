@@ -18,11 +18,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Create an instance of controller
-        MainMenuController controller = new MainMenuController(new MainMenuView());
+            // Create an instance of controller
+            MainMenuController controller = new MainMenuController(new MainMenuView());
 
-        // Call the show() method of the controller to display the view
-        controller.start(stage);
+            // Call the show() method of the controller to display the view
+            controller.start(stage);
+
+
     }
 
     public static void main(String[] args) {

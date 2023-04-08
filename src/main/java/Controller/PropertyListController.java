@@ -13,6 +13,7 @@ package Controller;
 import Model.Property;
 import View.PropertyListView;
 import com.example.demo6.Main;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -27,7 +28,12 @@ public class PropertyListController {
     }
 
     public void displayProperties(Stage primaryStage) {
-        List<Property> properties = Main.properties;
-        propertyListView.start(primaryStage, properties);
+        Thread thread = new Thread(() -> {
+            Platform.runLater(() -> {
+                List<Property> properties = Main.properties;
+                propertyListView.start(primaryStage, properties);
+            });
+        });
+        thread.start();
     }
 }

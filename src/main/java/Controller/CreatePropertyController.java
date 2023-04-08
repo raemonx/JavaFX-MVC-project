@@ -13,6 +13,7 @@ package Controller;
 import Model.*;
 import View.CreatePropertyView;
 import com.example.demo6.Main;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 
@@ -27,30 +28,35 @@ public class CreatePropertyController {
         view.start(primaryStage, type);
     }
 
-    public void handleFormData(int type, String streetNumber, String streetName, String city, String state, String zipCode, int unitNumber, int numberOfBedrooms, int numberOfBathrooms, int squareFootage) {
+    public void handleFormData(int type, String streetNumber, String streetName, String city, String state, String zipCode, int unitNumber, int numberOfBedrooms, int numberOfBathrooms, int squareFootage){
 
         Address address = new Address(streetName, city, state, zipCode);
         // Handle the creators on a new thread
-        Runnable task = () -> {
-            String streetNo = "";
-            if (streetNumber != null) {
-                streetNo = streetNumber;
-            }
-            if (type == 1) {
-                PropertyCreator creator = new ApartmentCreator();
-                Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
-                Main.properties.add(property);
-            } else if (type == 2) {
-                PropertyCreator creator = new CondoCreator();
-                Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
-                Main.properties.add(property);
-            } else if (type == 3) {
-                PropertyCreator creator = new HouseCreator();
-                Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
-                Main.properties.add(property);
-            }
-        };
-        Thread thread = new Thread(task);
+        Thread thread = new Thread(() -> {
+
+            Platform.runLater(() -> {
+                String streetNo = "";
+                if (streetNumber != null) {
+                    streetNo = streetNumber;
+                }
+                if (type == 1) {
+                    PropertyCreator creator = new ApartmentCreator();
+                    Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
+                    Main.properties.add(property);
+                } else if (type == 2) {
+                    PropertyCreator creator = new CondoCreator();
+                    Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
+                    Main.properties.add(property);
+                } else if (type == 3) {
+                    PropertyCreator creator = new HouseCreator();
+                    Property property = creator.createProperty(streetNo, address, unitNumber, numberOfBedrooms, numberOfBathrooms, squareFootage);
+                    Main.properties.add(property);
+                }
+
+            });
+
+        });
         thread.start();
+
     }
 }

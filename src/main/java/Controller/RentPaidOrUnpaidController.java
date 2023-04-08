@@ -12,6 +12,7 @@ package Controller;
 
 import Model.Lease;
 import View.RentPaidOrUnpaidView;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public class RentPaidOrUnpaidController {
     }
 
     public void displayPaidOrUnpaidLease(Stage primaryStage, List<Lease> leases, boolean paid) {
-        view.displayLeases(primaryStage, leases, paid);
+        Thread thread = new Thread(() -> {
+            Platform.runLater(() -> {
+                view.displayLeases(primaryStage, leases, paid);
+            });
+        });
+        thread.start();
     }
 }
