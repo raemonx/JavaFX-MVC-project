@@ -10,6 +10,7 @@ package com.example.demo6.SetClass;
  ***/
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class SetClass<S extends Identifiable> {
@@ -34,14 +35,17 @@ public class SetClass<S extends Identifiable> {
     }
     //method to remove an element
     public S remove(int id) {
-        for (int i = 0; i < elements.size(); i++) {
-            if (elements.get(i).getID() == id) {
-                elements.remove(i);
-                return elements.get(i);
+        Iterator<S> iterator = elements.iterator();
+        while (iterator.hasNext()) {
+            S student = iterator.next();
+            if (student.getID() == id) {
+                iterator.remove();
+                return student;
             }
         }
         return null;
     }
+
     //method to peek an element and return a boolean value
     public boolean peek(int id) {
         for (S element : elements) {
@@ -58,18 +62,20 @@ public class SetClass<S extends Identifiable> {
     //Method to check if elements are a part of a set
     @Override
     public boolean equals(Object obj) {
+        boolean check = true;
         if (obj instanceof SetClass) {
             SetClass<?> Set = (SetClass<?>) obj;
             if (size() == Set.size()) {
                 for (S element : elements) {
-                    for (Identifiable otherElement : Set.elements){
-                        if (element.getID()!=otherElement.getID()) {
-                            return false;
+                        if (!Set.elements.contains(element)) {
+                            check = false;
+                            return check;
                         }
                     }
-                }
-                return true;
+
+                return check;
             }
+            return false;
         }
         return false;
     }
