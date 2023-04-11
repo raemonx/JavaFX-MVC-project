@@ -62,18 +62,22 @@ public class SetClass<S extends Identifiable> {
     //Method to check if elements are a part of a set
     @Override
     public boolean equals(Object obj) {
-        boolean check = true;
         if (obj instanceof SetClass) {
-            SetClass<?> Set = (SetClass<?>) obj;
-            if (size() == Set.size()) {
+            SetClass<?> otherSet = (SetClass<?>) obj;
+            if (size() == otherSet.size()) {
                 for (S element : elements) {
-                        if (!Set.elements.contains(element)) {
-                            check = false;
-                            return check;
+                    boolean found = false;
+                    for (Identifiable otherElement : otherSet.elements) {
+                        if (otherElement.getID() == element.getID()) {
+                            found = true;
+                            break;
                         }
                     }
-
-                return check;
+                    if (!found) {
+                        return false;
+                    }
+                }
+                return true;
             }
             return false;
         }
