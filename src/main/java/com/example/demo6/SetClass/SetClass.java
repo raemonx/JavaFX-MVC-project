@@ -10,6 +10,7 @@ package com.example.demo6.SetClass;
  ***/
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class SetClass<S extends Identifiable> {
@@ -34,14 +35,17 @@ public class SetClass<S extends Identifiable> {
     }
     //method to remove an element
     public S remove(int id) {
-        for (int i = 0; i < elements.size(); i++) {
-            if (elements.get(i).getID() == id) {
-                elements.remove(i);
-                return elements.get(i);
+        Iterator<S> iterator = elements.iterator();
+        while (iterator.hasNext()) {
+            S student = iterator.next();
+            if (student.getID() == id) {
+                iterator.remove();
+                return student;
             }
         }
         return null;
     }
+
     //method to peek an element and return a boolean value
     public boolean peek(int id) {
         for (S element : elements) {
@@ -59,17 +63,23 @@ public class SetClass<S extends Identifiable> {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof SetClass) {
-            SetClass<?> Set = (SetClass<?>) obj;
-            if (size() == Set.size()) {
+            SetClass<?> otherSet = (SetClass<?>) obj;
+            if (size() == otherSet.size()) {
                 for (S element : elements) {
-                    for (Identifiable otherElement : Set.elements){
-                        if (element.getID()!=otherElement.getID()) {
-                            return false;
+                    boolean found = false;
+                    for (Identifiable otherElement : otherSet.elements) {
+                        if (otherElement.getID() == element.getID()) {
+                            found = true;
+                            break;
                         }
+                    }
+                    if (!found) {
+                        return false;
                     }
                 }
                 return true;
             }
+            return false;
         }
         return false;
     }

@@ -45,7 +45,7 @@ public class CreateTenantView {
         bp.setPadding(new Insets(10, 30, 30, 30));
 
         Text title = new Text();
-        title.setText("Add Property Details");
+        title.setText("Add Tenant Details");
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 24));
         title.setFill(Color.web("#0076a3"));
 
